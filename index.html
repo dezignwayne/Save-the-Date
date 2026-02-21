@@ -210,7 +210,7 @@
 
         .header-text p {
             font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 400;
             letter-spacing: 2px;
             color: var(--text-dark);
@@ -294,7 +294,7 @@
             }
 
             .header-text p {
-                font-size: 15px;
+                font-size: 12px;
             }
 
             .download-btn {
@@ -358,16 +358,19 @@
     </div>
 
     <script>
-        // Animate celebration text letter by letter
+        // Animate celebration text word by word
         document.addEventListener('DOMContentLoaded', function() {
             const textElement = document.getElementById('celebrationText');
             const text = textElement.textContent;
             textElement.innerHTML = '';
             
-            text.split('').forEach((char, index) => {
+            // Split by words instead of letters
+            const words = text.split(' ');
+            words.forEach((word, index) => {
                 const span = document.createElement('span');
-                span.textContent = char === ' ' ? '\u00A0' : char; // Preserve spaces
-                span.style.animationDelay = `${0.8 + (index * 0.03)}s`; // Start after 0.8s, stagger by 0.03s per letter
+                span.textContent = word;
+                span.style.animationDelay = `${0.8 + (index * 0.15)}s`; // Stagger by 0.15s per word
+                span.style.marginRight = '0.3em'; // Add space between words
                 textElement.appendChild(span);
             });
         });
